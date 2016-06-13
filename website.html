@@ -1,0 +1,154 @@
+<!DOCTYPE HTML> 
+<HTML lang = "en">
+
+<head>
+
+<!-- links for the tabs -->
+<title> Trash, Recycle, Compost  </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- styling --> 
+<style> 
+#background
+{
+    display: none;
+    color: blue; 
+}
+#container
+{
+  height: 1000px; /* have to change this? */
+  position: relative;
+  width: 1000px;
+}
+#viewport
+{
+  height: 100%;
+  width: 100%;
+}
+#controls
+{
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+} 
+#button
+{
+	height: 800px;
+	width: 800px; 
+	background: transparent;
+    border: none !important;
+    font-size:0;
+}
+#body
+{
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+}
+h3
+{
+	/* float: right; */
+}
+</style> 
+</head>
+
+<body style="background-color:#ffffe6;">
+
+<!-- header --> 
+<div class="header" style="background-color: #d6aa95;">
+  <center><img src="header3.png" alt="logo"/></center>
+</div>
+    
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item active">
+    <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Games</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Info</a>
+  </li> 
+  <!--li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Pictures</a>
+  </li-->
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <!-- Home tab pane --> 
+  <div class="tab-pane active" id="home" role="tabpanel" style = "margin-left:18px; "><br>
+    <!-- automatic slideshow --> 
+    <div class="w3-content w3-section" style="max-width:500px; float: left;">
+        <img class="mySlides" src="beach.jpg" style="width:100%">
+        <img class="mySlides" src="pickup.jpg" style="width:100%">
+        <img class="mySlides" src="earth.jpg" style="width:100%">
+    </div>
+<script> 
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script> 
+
+<h3><br><br><br><br><br><br><center>Welcome to our website!</center></h3> 
+</div>
+  
+  <!-- game tab pane --> 
+  <div class="tab-pane" id="profile" role="tabpanel" style = "margin-left:18px;">
+  <center><br><br><br><br><br> Drag and drop pieces of trash into right bin. </center> 
+  <center><canvas id="canvas" width="800" height="800" style="border:1px solid gray; background-color:#faf1e8; margin-top: 100px;"></canvas></center>
+
+  <div id="container">
+    <canvas id="viewport">
+    </canvas>
+    <menu id="controls">
+    </menu>
+  </div>
+
+  <canvas style="z-index:1"></canvas>
+  <a href = "The-game.html"><br><br><input type="button" style="z-index:2; position:absolute; top:448px; left:305px; width: 800px;" value="Press me!" id="button"/></a> 
+
+  <img src="StartScreen.jpg" id="background" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"> </script>
+  <script> 
+      $(document).ready(function() {
+      var d_canvas = document.getElementById('canvas');
+      var context = d_canvas.getContext('2d');
+      var background = document.getElementById('background');
+       context.drawImage(background, 0, 0) ;
+    
+      $('#draw').click(function() {
+        		     $canvas = $('#canvas');
+         });
+      });
+
+
+  </script> 
+</div>
+  
+<!-- info tab pane --> 
+<div class="tab-pane" id="messages" role="tabpanel" style = "margin-left:18px;">
+
+<center> 
+<img src = "unnamed.png" id= "infographic" style="margin-top: 100px;"> 
+</center>
+
+</div> 
+
+</body> 
+</html> 

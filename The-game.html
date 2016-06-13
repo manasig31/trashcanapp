@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+    
+<head> 
+    <style> 
+        table {
+            margin: 0 auto; 
+        }
+        h1 {
+            margin: 0 auto; 
+        }
+    </style>
+    
+</head>
+
+<body bgcolor="#faf1e8">
+  <table>
+    <tr>
+       <td><img draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)" src="recycle.png" id="recycleBin" width="230" height="230" /></td>
+       <td><img draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)" src="TRAAH.png" id="trashBin" width="230" height="230"/></td>
+       <td><img draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)" src="compost.png" id="compostBin" width="230" height="230" /></td>
+    </tr>
+    <tr>
+        <td bgcolor="#6dc8c7"><img src="chips.jpg" id="laysChips" width=100 height=100 ondragstart="drag(event)" draggable="true"/></td>
+        <td bgcolor="#fc7a66"><img src="pizza.jpg" id="pizza" width= 100 height=100 ondragstart="drag(event)" draggable="true"/></td>
+        <td bgcolor= "#ffcd5a"><img src="coke.jpg" id="cokeCan" width= 120 height=120 ondragstart="drag(event)" draggable="true"/></td>
+    </tr>
+      <tr>
+          <td bgcolor= "#fc7a66"><img ondragstart="drag(event)" draggable="true" src="bananapeel.jpg" id="bananaPeel" width= 100 height=100/> </td>
+          <td bgcolor= "#ffcd5a"><img ondragstart="drag(event)" draggable="true" src="trashitems.jpg" id="lightBulb" width= 100 height=100/></td>
+          <td bgcolor= "#6dc8c7"><img ondragstart="drag(event)" draggable="true" src="paper.jpg" id="newsPaper" width= 100 height=100/></td>
+      </tr>
+   </table>
+    <center><h1>Your Score: <p id="myScore"></p></h1></center>
+   <script>
+        var myScore=0;
+        document.getElementById("myScore").innerHTML = myScore;
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }    
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev) { 
+        var dragObjectId = ev.dataTransfer.getData("text");
+        var dropObjectId = ev.target.id;
+        if(((dragObjectId=="laysChips" || dragObjectId== "lightBulb")  && dropObjectId=="trashBin") ||
+           ((dragObjectId== "bananaPeel" || dragObjectId== "pizza") && dropObjectId=="compostBin"  ) ||
+           ((dragObjectId== "newsPaper" || dragObjectId== "cokeCan") &&  dropObjectId=="recycleBin" )) {
+        ev.preventDefault();
+        var myImage = document.getElementById(dragObjectId);
+        ev.target.appendChild(myImage);
+        myImage.style["visibility"]="hidden"; 
+        myScore= myScore + 1;
+        }
+        else    {
+            myScore= myScore - 1;
+        }
+        document.getElementById("myScore").innerHTML = myScore;    
+        }
+    </script>  
+</body>
+</html>
